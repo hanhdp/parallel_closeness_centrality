@@ -1,0 +1,86 @@
+BIGGRAPH SOLUTION
+Performing DBLP Dataset 
+NumThread = 36
+Building the big graph Done, Num of nodes 425957, num of edges 2099732
+Computing Closeness Centrality for 425957 nodes 
+153,027
+153,971
+153,47
+154,131
+154,152
+155,08
+153,327
+153,438
+153,875
+153,056
+Performing YouTube Dataset 
+NumThread = 36
+Building the big graph Done, Num of nodes 1157828, num of edges 5975248
+Computing Closeness Centrality for 1157828 nodes 
+2169,82
+2134,85
+2149,01
+2142,65
+2237,31
+2178,86
+2180,47
+2175,7
+2174,34
+2143,76
+Performing Flick Dataset 
+NumThread = 36
+Building the big graph Done, Num of nodes 214626, num of edges 18229106
+Computing Closeness Centrality for 214626 nodes 
+313,219
+310,864
+311,079
+309,937
+308,215
+309,453
+308,117
+305,916
+307,104
+306,673
+Performing Facebook Dataset 
+NumThread = 36
+Building the big graph Done, Num of nodes 4039, num of edges 176468
+Computing Closeness Centrality for 4039 nodes 
+0,032502
+0,0314606
+0,0314132
+0,0313337
+0,0315118
+0,0315649
+0,0314218
+0,0315327
+0,0321272
+0,0315993
+Performing FB Artist Dataset 
+NumThread = 36
+Building the big graph Done, Num of nodes 50515, num of edges 1638396
+Computing Closeness Centrality for 50515 nodes 
+6,44175
+6,42406
+6,39676
+6,39247
+6,39839
+6,39219
+6,40566
+6,39724
+6,39418
+6,40557
+Performing FB Politician Dataset 
+NumThread = 36
+Building the big graph Done, Num of nodes 5908, num of edges 83435
+Computing Closeness Centrality for 5908 nodes 
+0,0603807
+0,0556204
+0,0557418
+0,055558
+0,0556552
+0,0556702
+0,0557746
+0,0556094
+0,0555865
+0,0556897
+

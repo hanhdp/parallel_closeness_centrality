@@ -1,0 +1,53 @@
+Sender: LSF System <openlava@fit12>
+Subject: Job 864029: <netkit-youtube> Done
+
+Job <netkit-youtube> was submitted from host <fit-gw> by user <hanhdp>.
+Job was executed on host(s) <7*fit12>, in queue <normal>, as user <hanhdp>.
+                            <4*fit11>
+                            <3*fit08>
+                            <18*fit15>
+                            <4*fit03>
+</home/hanhdp> was used as the home directory.
+</home/hanhdp/projects/test> was used as the working directory.
+Started at Fri Sep 14 16:27:58 2018
+Results reported at Sun Sep 16 09:33:32 2018
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+##BSUB -m "fit05"
+#BSUB -J netkit-youtube
+#BSUB -n 36
+#BSUB -q normal
+##BSUB -q bigmem
+#BSUB -e youtubeK.err
+#BSUB -o youtubeK.out
+
+python youtube.py
+
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :1481162.88 sec.
+    Max Memory :      4383 MB
+    Max Swap   :      8262 MB
+
+    Max Processes  :         4
+
+The output (if any) follows:
+
+
+ Round
+Time of CC for com-youtube.ungraph.txt = 147924.3995566368s
+
+
+PS:
+
+Read file <youtubeK.err> for stderr output of this job.
+
