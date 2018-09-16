@@ -1,0 +1,72 @@
+hanhdp@fit05:~/projects/cc-test$ ,/testCPU ,,/corpus/artist_edges,fb 0
+Building the big graph,,, Done, Num of nodes 50515, num of edges 1638396
+Computing Closeness Centrality for 50515 nodes ,,,
+Diameter = 11
+195,276
+97,5274
+49,1356
+34,4749
+26,4183
+21,4055
+18,7158
+16,7309
+14,4907
+13,263
+11,7839
+10,8564
+9,88416
+9,11611
+8,77478
+8,06264
+7,48137
+7,04063
+6,64824
+
+hanhdp@fit05:~/projects/cc-test$ ,/testCPU ,,/corpus/facebook_combined,txt 0
+Building the big graph,,, Done, Num of nodes 4039, num of edges 176468
+Computing Closeness Centrality for 4039 nodes ,,,
+Diameter = 8
+1,03097 
+0,55226
+0,305695
+0,222787
+0,168741
+0,130008
+0,120288
+0,099848
+0,0952936
+0,0862501
+0,0740903
+0,0669428
+0,0623372
+0,0613894
+0,0567666
+0,0544333
+0,0540649
+0,0530047
+0,0518331
+
+hanhdp@fit05:~/projects/cc-test$ ,/testCPU ,,/corpus/politician_edges,fb 0
+Building the big graph,,, Done, Num of nodes 5908, num of edges 83435
+Computing Closeness Centrality for 5908 nodes ,,,
+Diameter = 14
+1,54591
+0,819392
+0,41527
+0,284529
+0,222575
+0,18058
+0,160047
+0,154848
+0,128546
+0,111406
+0,100828
+0,0911157
+0,0882299
+0,0841515
+0,0771847
+0,0750141
+0,0687687
+0,0659742
+0,0595525
+
