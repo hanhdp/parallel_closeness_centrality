@@ -180,7 +180,7 @@ void Build(char * filename)
    cerr << " Num of nodes " << Node_Num << ", num of edges " << Edge_Num << endl;
    // cerr << ". Done!" << endl;
 }
-
+//Compute the distance from v to other nodes in networks by BFS
 uint32_t SSSP(uint32_t v)
 {
 	uint32_t threadID = __cilkrts_get_worker_number();    
@@ -192,8 +192,7 @@ uint32_t SSSP(uint32_t v)
 	Q.push(v,0);
 	Q.next();
 	//cout << "Computing thread = " << threadID << endl;
-	SetBit(threadID, v);
-	
+	SetBit(threadID, v);	
 	
 	//cout << "Computing v = " << v << " M = "<<Maps[threadID][v >> 5] <<endl;
 	while (!Q.empty()) {
@@ -202,15 +201,10 @@ uint32_t SSSP(uint32_t v)
 			uint32_t s = Q.front();
 			Q.pop();		
 			for (uint32_t w : Edges[s]) {
-				if (TestBit(threadID,w)) {
-					//cout << "	found " << s << "-"<<w << endl;
-					continue;
+				if (!TestBit(threadID,w)) {
+					Q.push(w, distance);//Q.next();
+					SetBit(threadID,w);
 				}
-				Q.push(w, distance);//Q.next();
-				//cout << "	putting " << w << "-"<< TestBit(threadID,w) << ":"<<distance << "M="<<Maps[threadID][w >> 5] << endl;
-				SetBit(threadID,w);
-				//cout << "	puttinG " << s << "-"<< w << ":"<<distance << " M="<<Maps[threadID][w >> 5] << endl;
-				
 			}			
 		}
 		Q.next();
@@ -219,7 +213,28 @@ uint32_t SSSP(uint32_t v)
 	ResetMap(threadID);
 	return Q.sum();
 }
-
+//Compute the CC
+vector<tuple<int, uint32_t>> ComputingCC()
+{
+	vector<tuple<uint32_t, int>> CC;
+	uint32_t n = Node_Num, init=0;
+	if (argc == 4)	
+		n = atoi(argv[3]);
+	else if (argc == 5)	{
+		init = atoi(argv[3]);
+		n = atoi(argv[4]);
+	}
+	Distances.resize(Node_Num);
+	cilk_for (uint32_t v = init; v < n; v++){
+		CC[v] = make_tuple(SSSP(v),v);
+	}
+	sort(Distances.begin() +init, Distances.begin() + n);
+	for (uint32_t v = init; v < n; v++){
+		if ( get<0>(Distances[v]) ==0 ) cout << get<1>(Distances[v]) << "=0" << endl;
+		else cout << get<1>(Distances[v]) << "=" << (Node_Num -1) / get<0>(Distances[v]) << endl;
+	}
+	return 
+}
 int main(int argc, char *argv[])
 {
 	if (argc < 2) {
@@ -231,34 +246,9 @@ int main(int argc, char *argv[])
 	cout << "NumThread = " << num_threads << endl;
 	is_directed = atoi(argv[2]);
 	Build(argv[1]);
-	uint32_t n = Node_Num, init=0;
-	if (argc == 4)	
-		n = atoi(argv[3]);
-	else if (argc == 5)	{
-		init = atoi(argv[3]);
-		n = atoi(argv[4]);
-	}
-
-	vector<tuple<uint32_t, int>> Distances;
-	Distances.resize(Node_Num);
-	if (argc == 5)	
-		cout << "Computing Closeness Centrality from "<< init << " for " << n << " nodes ..." << endl;	
-	else 
-		cout << "Computing Closeness Centrality for "<< n << " nodes ..." << endl;	
-	n += init;
-	for (int i=0; i< 10; i++){
-		double start = CycleTimer::currentSeconds();
-		cilk_for (uint32_t v = init; v < n; v++){
-			Distances[v] = make_tuple(SSSP(v),v);
-		}
-		cout << CycleTimer::currentSeconds() - start << "s" << endl;
-	}	
-	sort(Distances.begin() +init, Distances.begin() + n);
-	//if (0)
-	for (uint32_t v = init; v < n; v++){
-		if ( get<0>(Distances[v]) ==0 ) cout << get<1>(Distances[v]) << "=0" << endl;
-		else cout << get<1>(Distances[v]) << "=" << (Node_Num -1) / get<0>(Distances[v]) << endl;
-	}
+	double start = CycleTimer::currentSeconds();
+	ComputingCC();
+	cout << CycleTimer::currentSeconds() - start << "s" << endl;
 	
 	return 0;
 }
